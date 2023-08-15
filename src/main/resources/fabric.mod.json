@@ -1,13 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "armorplus",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This mod aims to help new BTA modders.",
+  "name": "Armor+",
+  "description": "Greatly expands armor cosmetics like in modern minecraft.",
   "authors": [
-    "Turnip Labs"
+    "Useless"
   ],
+  "icon": "icon.png",
   "contact": {
     "homepage": "",
     "sources": ""
@@ -18,15 +19,16 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-        "turniplabs.examplemod.ExampleMod"
+        "useless.armorplus.ArmorPlus"
     ]
   },
   "mixins": [
-      "examplemod.mixins.json"
+      "armorplus.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.13.3"
+    "fabricloader": ">=0.13.3",
+    "prismaticlibe":  ">=1.0.2"
   },
   "suggests": {
   }
