@@ -3,7 +3,9 @@ package useless.armorplus.mixin;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemArmor;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import useless.armorplus.ArmorPlus;
 import useless.prismaticlibe.IColored;
 
 @Mixin(value = ItemArmor.class, remap = false)
@@ -11,8 +13,11 @@ public class mixinArmor extends Item implements IColored {
 
     @Unique
     public int[] baseTexture = new int[2];
-    public mixinArmor(int id) {
+    @Shadow
+    public final int armorPiece;
+    public mixinArmor(int id, int armorPiece) {
         super(id);
+        this.armorPiece = armorPiece;
     }
 
     @Override
@@ -23,13 +28,18 @@ public class mixinArmor extends Item implements IColored {
     }
 
     @Override
+    public int getPlacedBlockMetadata(int i) {
+        return super.getPlacedBlockMetadata(i);
+    }
+
+    @Override
     public int baseColor() {
         return 0xFFFFFF;
     }
 
     @Override
     public int overlayColor() {
-        return 0;
+        return 0xDD0000;
     }
 
     @Override
@@ -39,6 +49,17 @@ public class mixinArmor extends Item implements IColored {
 
     @Override
     public int[] overlayTexture() {
-        return new int[2];
+        switch (armorPiece){
+            case 0:
+                return ArmorPlus.itemTrimHelmet;
+            case 1:
+                return ArmorPlus.itemTrimChest;
+            case 2:
+                return ArmorPlus.itemTrimLegs;
+            case 3:
+                return ArmorPlus.itemTrimBoots;
+            default:
+                return new int[] {0,4};
+        }
     }
 }
